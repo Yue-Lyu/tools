@@ -11,31 +11,29 @@ class Squirrels(models.Model):
         max_length=100,
         help_text=_('Unique Squirrel ID'),
         )
-    Shift = models.CharField(
-        max_length=100,
-        choices = SHIFT_CHOICES,
-        )
+    PM='PM'
+    AM='AM'
     SHIFT_CHOICES=(
             (PM,'PM'),
             (AM,'AM'),
             )
-    PM='PM'
-    AM='AM'
+    Shift = models.CharField(
+        max_length=100,
+        choices = SHIFT_CHOICES,
+        )
     Date = models.DateField(
             help_text=_('Date'),
             )
-    Age = models.CharField(
-            max_length=100,
-            choices=ANG_CHOICES,
-            null = True)
+    Adult='Adult'
+    Juvenile='Juvenile'
     AGE_CHOICES=(
             (Adult,'Adult'),
             (Juvenile,'Juvenile'),
-            (?,'?'),
             )
-    Adult='Adult'
-    Juvenile='Juvenile'
-    ?='?'
+    Age = models.CharField(
+            max_length=100,
+            choices=AGE_CHOICES,
+            null = True)
     Primary_Fur_Color=models.CharField(
             max_length=100,
             help_text=_('Primary Fur Color'),
