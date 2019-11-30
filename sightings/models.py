@@ -116,4 +116,6 @@ class Squirrels(models.Model):
             max_length=100,
             choices=CHOICES,
             help_text=_('Runs_from'))
+    def __str__(self):
+        return self.Unique_squirrel_id
 # Create your models here.
