@@ -1,5 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext as _
+class Meta:
+    managed = True
+
+
 class Squirrels(models.Model):
     X = models.FloatField(
             help_text=_('Longitude'),

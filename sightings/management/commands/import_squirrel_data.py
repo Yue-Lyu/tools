@@ -1,41 +1,46 @@
 from django.core.management.base import BaseCommand
-import pandas as pd
 from sightings.models import Squirrels
-from django.utils import timezone
-
+import csv
+import datetime
 class Command(BaseCommand):
     help='Import squirrel data from csv file'
     def add_arguments(self,parser):
-        parser.add_argument('path')
+        parser.add_argument('path',type=str)
     def handle(self,*args,**kwargs):
         path = kwargs['path']
-        file = pd.read_csv(path,encoding='latin1')
-        for i in range(len(file)):
-            s = Squirrels(
-                    X=file.iloc[i]['X'],
-                    Y=file.iloc[i]['Y'],
-                    Unique_squirrel_id=file.iloc[i]['Unique Squirrel ID'],
-                    Shift=file.iloc[i]['Shift'],
-                    Date=file.iloc[i]['Date'],
-                    Age=file.iloc[i]['Age'],
-                    Primary_Fur_Color=file.iloc[i]['Primary Fur Color'],
-                    Location = file.iloc[i]['Location'],
-                    Specific_location = file.iloc[i]['Specific Location'],
-                    Running=file.iloc[i]['Running'],
-                    Chasing=file.iloc[i]['Chasing'],
-                    Climbing=file.iloc[i]['Climbing'],
-                    Eating=file.iloc[i]['Eating'],
-                    Foraging=file.iloc[i]['Foraging'],
-                    Other_activities=file.iloc[i]['Other Activities'],
-                    Kuks=file.iloc[i]['Kuks'],
-                    Quaas=file.iloc[i]['Quaas'],
-                    Moans=file.iloc[i]['Moans'],
-                    Tail_flags=file.iloc[i]['Tail flags'],
-                    Tail_twitches=file.iloc[i]['Tail twitches'],
-                    Approaches=file.iloc[i]['Approaches'],
-                    Indifferent=file.iloc[i]['Indifferent'],
-                    Runs_from=file.iloc[i]['Runs from'],
-                    )
-            s.save()
+
+        try:
+            with open(path,encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for i in reader:
+                    s = Squirrels(
+                        X=i['X'],
+                        Y=i['Y'],
+                        Unique_squirrel_id=i['Unique Squirrel ID'],
+                        Shift=i['Shift'],
+                        Date=datetime.date(int(i['Date'][-4:]),int(i['Date'][:2]),int(i['Date'][2:4])),
+                        Age=i['Age'],
+                        Primary_Fur_Color=i['Primary Fur Color'],
+                        Location = i['Location'],
+                        Specific_location = i['Specific Location'],
+                        Running=i['Running'].upper(),
+                        Chasing=i['Chasing'].upper(),
+                        Climbing=i['Climbing'].upper(),
+                        Eating=i['Eating'].upper(),
+                        Foraging=i['Foraging'].upper(),
+                        Other_activities=i['Other Activities'],
+                        Kuks=i['Kuks'].upper(),
+                        Quaas=i['Quaas'].upper(),
+                        Moans=i['Moans'].upper(),
+                        Tail_flags=i['Tail flags'].upper(),
+                        Tail_twitches=i['Tail twitches'].upper(),
+                        Approaches=i['Approaches'].upper(),
+                        Indifferent=i['Indifferent'].upper(),
+                        Runs_from=i['Runs from'].upper(),
+                        )
+                    s.save()
+        except csv.Error as e:
+            print(f'there is something wrong with {reader.line_num}')
+
 
 
