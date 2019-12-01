@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext as _
+from django.urls import reverse
+from django.forms import ModelForm
 class Meta:
     managed = True
 
@@ -118,4 +120,10 @@ class Squirrels(models.Model):
             help_text=_('Runs_from'))
     def __str__(self):
         return self.Unique_squirrel_id
+    def get_absolute_url(self):
+        return reverse('squirrels-detail', kwargs={'id':self.Unique_squirrel_id})
+class Form(ModelForm):
+    class Meta:
+        model = Squirrels
+        fields = '__all__'
 # Create your models here.
