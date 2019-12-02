@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+	<head><title>2018 Central Park Squirrel Census</title></head>
     <body>
 	<div>
 	<p><a href="/sightings/add/">Create a new sighting</a></p>
@@ -8,7 +9,7 @@
 	    <ul>
 	    {% for squirrel in squirrels %}
 	    <li>
-		    <a href='{{ squirrel.Unique_squirrel_id}}update/'>{{ squirrel.Unique_squirrel_id }}</a>
+		    <a href='{{ squirrel.Unique_squirrel_id}}'>{{ squirrel.Unique_squirrel_id }}</a>
 	    </li>
 	    {% endfor %}
             </ul>

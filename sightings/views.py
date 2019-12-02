@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 from .models import Squirrels,Form
 from django.views.generic import TemplateView, ListView
@@ -18,8 +18,8 @@ def squirrels_details(request,Unique_squirrel_id):
     return HttpResponse(f"hi,i'm {squirrel.Unique_squirrel_id}")
 
 def update(request,squirrel_id):
-    Object=get_object_or_404(Squirrels,Unique_squirrel_id=squirrel_id)
-    form = Form(request.POST,instance=Object)
+    Object = get_object_or_404(Squirrels,Unique_squirrel_id=squirrel_id)
+    form = Form(request.POST or None,instance=Object)
     context = {'form':form}
     try:
         Object=form.save(commit=False)
@@ -36,17 +36,19 @@ def update(request,squirrel_id):
 class add(CreateView):
     model = Squirrels
     fields = '__all__'
+#def add(request):
+    #form = Form(request.POST)
+    #try:
+    #    form.save()
+     #   form = Form()
+      #  return redirect('../')
+    #except:
+    #    context = {'form':form}
+    #    return render(request,'sightings/squirrel_form.html',context)
 
 class delete(DeleteView):
     model =Squirrels
     success_url = reverse_lazy('squirrels-list')
 
 
-class ListView(ListView):
-    model = Squirrels
-    paginate_by = 100
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        return context
 # Create your views here.
