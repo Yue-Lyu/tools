@@ -6,6 +6,7 @@ from django.views.generic.edit import UpdateView,DeleteView,CreateView
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic.list import ListView
+import json
 
 def all_squirrels(request):
     squirrels = Squirrels.objects.all()
@@ -50,5 +51,9 @@ class delete(DeleteView):
     model =Squirrels
     success_url = reverse_lazy('squirrels-list')
 
-
+def showmap(request):
+    i = Squirrels.objects.all()[0:100]
+    sightings = [{'Longitude': s.X,'Latitude':s.Y} for s in i]
+    context = {'sightings':sightings}
+    return render(request, 'sightings/map.html',context)
 # Create your views here.

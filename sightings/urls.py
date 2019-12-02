@@ -6,4 +6,5 @@ urlpatterns=[
         path('',all_squirrels),
         path('add/',views.add.as_view(),name='add'),
         path('<squirrel_id>/', views.update,name='update'),
+        path('map/',views.showmap,name='showmap'),
         ]
