@@ -56,10 +56,10 @@ def delete(request,squirrel_id):
     except:
         return render(request,'sightings/confirm_delete.html')
 
-
+import random 
 def showmap(request):
-        i = Squirrels.objects.all()[0:100]
-        sightings = [{'Longitude': s.X,'Latitude':s.Y} for s in i]
-        context = {'sightings':sightings}
-        return render(request, 'sightings/map.html',context)
-# Create your views here.
+    sightings = Squirrels.objects.all()
+    context = {
+            'sightings':sightings
+            }
+    return render(request,'sightings/map.html',context)
