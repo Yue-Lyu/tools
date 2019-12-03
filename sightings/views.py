@@ -47,13 +47,19 @@ class add(CreateView):
     #    context = {'form':form}
     #    return render(request,'sightings/squirrel_form.html',context)
 
-class delete(DeleteView):
-    model =Squirrels
-    success_url = reverse_lazy('squirrels-list')
+def delete(request,squirrel_id):
+    Object = get_object_or_404(Squirrels,Unique_squirrel_id=squirrel_id)
+    try:
+        Object.delete()
+        messages.success(request,'You have successfully deleted the sighting!')
+        return redirect('../')
+    except:
+        return render(request,'sightings/confirm_delete.html')
+
 
 def showmap(request):
-    i = Squirrels.objects.all()[0:100]
-    sightings = [{'Longitude': s.X,'Latitude':s.Y} for s in i]
-    context = {'sightings':sightings}
-    return render(request, 'sightings/map.html',context)
+        i = Squirrels.objects.all()[0:100]
+        sightings = [{'Longitude': s.X,'Latitude':s.Y} for s in i]
+        context = {'sightings':sightings}
+        return render(request, 'sightings/map.html',context)
 # Create your views here.

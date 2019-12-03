@@ -1,4 +1,9 @@
+<!doctype html>
+<html>
+<h1>DELETE Confirmation Page</h1>
 <form method='DELETE'>{% csrf_token %}
     <p>Are you sure you want to delete "{{ object.Unique_squirrel_id }}"?</p>
     <input type="submit" value="Confirm" />
+    <a href='sightings/'><input type="button" value="Cancel"/></a>
 </form>
+</html>
