@@ -1,4 +1,4 @@
-#Tools for Analytics Squirrel Census Project
+# Tools for Analytics Squirrel Census Project
 
 Our goal is keeping track of  all the known squirrels and plans to start with Central Park. 
 
@@ -69,7 +69,7 @@ Add additional notes about how to deploy this on a live system
 * **Chen Wang** - *Uni: cw3211* 
 * **Yue Lyu** - *Uni: yl4259* 
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Yue-Lyu/tools/graphs/contributors) who participated in this project.
 
 ## Acknowledgments
 
