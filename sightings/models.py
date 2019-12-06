@@ -16,6 +16,7 @@ class Squirrels(models.Model):
     Unique_squirrel_id = models.CharField(
         max_length=100,
         help_text=_('Unique Squirrel ID'),
+        unique = True,
         )
     PM='PM'
     AM='AM'
@@ -40,10 +41,35 @@ class Squirrels(models.Model):
             max_length=100,
             choices=AGE_CHOICES,
             null = True)
-    Primary_Fur_Color=models.CharField(
-            max_length=100,
+    GRAY = 'Gray'
+    CINNAMON = 'Cinnamon'
+    BLACK = 'Black'
+
+    COLOR_CHOICES = (
+            (GRAY, 'Gray'),
+            (CINNAMON, 'Cinnamon'),
+            (BLACK, 'Black'),
+            )
+
+    Primary_Fur_Color = models.CharField(
             help_text=_('Primary Fur Color'),
-            null = True
+            max_length=20,
+            choices=COLOR_CHOICES,
+            null =True,
+            )
+    GROUND_PLANE = 'Ground Plane'
+    ABOVE_GROUND = 'Above Ground'
+
+    LOCATION_CHOICES = (
+            (GROUND_PLANE, 'Ground Plane'),
+            (ABOVE_GROUND, 'Above Ground'),
+            )
+
+    Location = models.CharField(
+            help_text=_('Location'),
+            max_length=20,
+            choices=LOCATION_CHOICES,
+            null = True,
             )
     Location = models.CharField(
             max_length=100,
@@ -122,8 +148,4 @@ class Squirrels(models.Model):
         return self.Unique_squirrel_id
     def get_absolute_url(self):
         return reverse('squirrels-detail', kwargs={'id':self.Unique_squirrel_id})
-class Form(ModelForm):
-    class Meta:
-        model = Squirrels
-        fields = '__all__'
 # Create your models here.

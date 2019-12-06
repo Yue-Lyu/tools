@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<h1>Sighting Stats</h1>
+
+{% block content %}
+<form  method='GET'>
+
+<style>
+table,table tr th, table tr td { border:1px solid black; }
+table { width: 200px; min-height: 25px; line-height: 25px; text-align: center; border-collapse: collapse;}
+</style>
+
+<table>
+	<tr>
+		<th>Unique Squirrel ID</th>
+		<th>Age</th>
+		<th>Primary Fur Color</th>
+		<th>Location</th>
+		<th>Other Activities</th>
+	</tr>
+	{% for instance in object_list %}
+	<tr>
+	<td>{{ instance.unique_squirrel_id }}</td>
+	<td>{{ instance.age }}</td>
+	<td>{{ instance.primary_fur_color }}</td>
+	<td>{{ instance.location }}</td>
+	<td>{{ instance.Other_activities}}</td>
+	</tr>
+	{% endfor %}
+</table>
+</form>
+{% endblock %}
+</html>

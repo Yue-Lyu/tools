@@ -1,11 +1,11 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
-from .models import Squirrels,Form
+from .models import Squirrels
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import UpdateView,DeleteView,CreateView
 from django.urls import reverse_lazy
-from django.utils import timezone
 from django.views.generic.list import ListView
+from .forms import Form
 import json
 
 def all_squirrels(request):
@@ -22,30 +22,34 @@ def update(request,squirrel_id):
     Object = get_object_or_404(Squirrels,Unique_squirrel_id=squirrel_id)
     form = Form(request.POST or None,instance=Object)
     context = {'form':form}
-    try:
+    if form.is_valid():
         Object=form.save(commit=False)
         Object.save()
-        messages.success(request,"You've updated the data!")
         return redirect('../')
-    except:
+    else:
         context={
                 'form':form,
-                'error':"Sorry, the data can't be updated, please check again."
         }
         return render(request,'sightings/update_form.html',context)
 
-class add(CreateView):
-    model = Squirrels
-    fields = '__all__'
-#def add(request):
-    #form = Form(request.POST)
-    #try:
-    #    form.save()
-     #   form = Form()
-      #  return redirect('../')
-    #except:
-    #    context = {'form':form}
-    #    return render(request,'sightings/squirrel_form.html',context)
+#class add(CreateView):
+#    model = Squirrels
+#    fields = '__all__'
+def add(request):
+    if request.method == 'POST':
+        form = Form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('../')
+    elif request.method == 'GET':
+        form = Form(request.GET)
+        if form.is_valid():
+            form.save()
+            return redirect(f'../')                                   
+    else:
+        form = Form()
+    context = {'form':form,}
+    return render(request,'sightings/squirrel_form.html',context)
 
 def delete(request,squirrel_id):
     Object = get_object_or_404(Squirrels,Unique_squirrel_id=squirrel_id)
@@ -63,3 +67,11 @@ def showmap(request):
             'sightings':sightings
             }
     return render(request,'sightings/map.html',context)
+
+def stats(request):
+    sightings = Squirrels.objects.all()
+    context = {
+            'sightings':sightings
+            }
+    return render(request, 'sightings/stats.html',context)
+
