@@ -25,7 +25,7 @@ def update(request,squirrel_id):
     if form.is_valid():
         Object=form.save(commit=False)
         Object.save()
-        return redirect('../')
+        return redirect('/sightings/')
     else:
         context={
                 'form':form,
@@ -40,12 +40,12 @@ def add(request):
         form = Form(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('../')
+            return redirect(f'/sightings/')
     elif request.method == 'GET':
         form = Form(request.GET)
         if form.is_valid():
             form.save()
-            return redirect(f'../')                                   
+            return redirect(f'/sightings/')                                   
     else:
         form = Form()
     context = {'form':form,}
@@ -55,7 +55,7 @@ def delete(request,squirrel_id):
     Object = get_object_or_404(Squirrels,Unique_squirrel_id=squirrel_id)
     try:
         Object.delete()
-        return redirect('../')
+        return redirect(f'/sightings/')
     except:
         return render(request,'sightings/confirm_delete.html')
 
