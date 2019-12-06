@@ -55,7 +55,6 @@ def delete(request,squirrel_id):
     Object = get_object_or_404(Squirrels,Unique_squirrel_id=squirrel_id)
     try:
         Object.delete()
-        messages.success(request,'You have successfully deleted the sighting!')
         return redirect('../')
     except:
         return render(request,'sightings/confirm_delete.html')
@@ -69,9 +68,17 @@ def showmap(request):
     return render(request,'sightings/map.html',context)
 
 def stats(request):
-    sightings = Squirrels.objects.all()
+    num_of_sightings = Squirrels.objects.all().count()
+    juvenile_age= Squirrels.objects.filter(Age='Juvenile').count()
+    gray_fur= Squirrels.objects.filter(Primary_Fur_Color='Gray').count()
+    ground_plane_location=Squirrels.objects.filter(Location='Ground Plane').count()
+    running = Squirrels.objects.filter(Running='TRUE').count()
     context = {
-            'sightings':sightings
+            'num_of_sightings':num_of_sightings,
+            'juvenile_age':juvenile_age,
+            'gray_fur':gray_fur,
+            'ground_plane_location':ground_plane_location,
+            'running':running,
             }
     return render(request, 'sightings/stats.html',context)
 
