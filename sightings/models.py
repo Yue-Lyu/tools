@@ -15,7 +15,7 @@ class Squirrels(models.Model):
         )
     Unique_squirrel_id = models.CharField(
         max_length=100,
-        help_text=_('Unique Squirrel ID'),
+        #help_text=_('Unique Squirrel ID'),
         primary_key= True,
         default = None,
         )
@@ -28,9 +28,11 @@ class Squirrels(models.Model):
     Shift = models.CharField(
         max_length=100,
         choices = SHIFT_CHOICES,
+        blank=True,
         )
     Date = models.DateField(
-            help_text=_('Date'),
+           # help_text=_('Date'),
+           blank=True,
             )
     Adult='Adult'
     Juvenile='Juvenile'
@@ -41,7 +43,8 @@ class Squirrels(models.Model):
     Age = models.CharField(
             max_length=100,
             choices=AGE_CHOICES,
-            null = True)
+            blank = True,
+            null = True,)
     GRAY = 'Gray'
     CINNAMON = 'Cinnamon'
     BLACK = 'Black'
@@ -53,10 +56,11 @@ class Squirrels(models.Model):
             )
 
     Primary_Fur_Color = models.CharField(
-            help_text=_('Primary Fur Color'),
+           # help_text=_('Primary Fur Color'),
             max_length=20,
             choices=COLOR_CHOICES,
             null =True,
+            blank=True,
             )
     GROUND_PLANE = 'Ground Plane'
     ABOVE_GROUND = 'Above Ground'
@@ -67,20 +71,17 @@ class Squirrels(models.Model):
             )
 
     Location = models.CharField(
-            help_text=_('Location'),
+           # help_text=_('Location'),
             max_length=20,
             choices=LOCATION_CHOICES,
             null = True,
-            )
-    Location = models.CharField(
-            max_length=100,
-            help_text=_('Location'),
-            null = True
+            blank=True,
             )
     Specific_location=models.CharField(
             max_length=100,
-            help_text=_('Specific Location'),
-            null = True
+            #help_text=_('Specific Location'),
+            null = True,
+            blank = True,
             )
     TRUE='TRUE'
     FALSE='FALSE'
@@ -91,60 +92,74 @@ class Squirrels(models.Model):
     Running=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Running'))
+            #help_text=_('Running'),
+            blank=True,)
     Chasing=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Chasing'))
+            #help_text=_('Chasing'),
+            blank=True,)
     Climbing=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Climbing'))
+            #help_text=_('Climbing')
+            blank=True,)
     Eating=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Eating'))
+            #help_text=_('Eating'),
+            blank=True,)
     Foraging=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Foraging'))
+            #help_text=_('Foraging')
+            blank=True,)
     Other_activities=models.CharField(
             max_length=100,
-            help_text=_('Other Activities'),
-            null = True)
+            #help_text=_('Other Activities'),
+            null = True,
+            blank=True,)
     Kuks=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Kuks'))
+            #help_text=_('Kuks'),
+            blank=True,)
 
     Quaas=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Quaas'))
+            #help_text=_('Quaas'),
+            blank=True,)
     Moans=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Moans'))
+            #help_text=_('Moans'),
+            blank=True,)
     Tail_flags=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Tail flags'))
+            #help_text=_('Tail flags'),
+            blank=True,)
     Tail_twitches=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Tail twitches'))
+            #help_text=_('Tail twitches'),
+            blank=True,)
     Approaches=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Approaches'))
+            #help_text=_('Approaches'),
+            blank=True,)
     Indifferent=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Indifferent'))
+            #help_text=_('Indifferent'),
+            blank=True,)
     Runs_from=models.CharField(
             max_length=100,
             choices=CHOICES,
-            help_text=_('Runs_from'))
+            #help_text=_('Runs_from'),
+            blank=True,)
     def __str__(self):
         return self.Unique_squirrel_id
     def get_absolute_url(self):
