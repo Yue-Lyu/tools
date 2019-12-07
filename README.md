@@ -22,7 +22,7 @@ See also the list of [contributors](https://github.com/Yue-Lyu/tools/graphs/cont
 
 ## Link to server
 
-[link](https://yl4259.appspot.com)
+[link](https://yl4259.appspot.com/sightings)
 
 ## Acknowledgments
 
