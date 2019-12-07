@@ -1,16 +1,38 @@
 <!doctype html>
 <html>
-<h1>Sighting Stats</h1>
-
+	<head>
+	<meta charset = 'utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	body {
+		font-family: fantasy, cursive, serif;
+		margin: 1;
+		background-color:#CD5C5C;
+		}
+	        /* Style the header */
+	        .header {
+			padding: 95px;
+			text-align: center;
+			color: purple;
+												        }
+	</style>
+	</head>
+	<h1><center>Sighting Stats</center></h1>
 {% block content %}
 <form  method='GET'>
 
 <style>
-table,table tr th, table tr td { border:1px solid black; }
-table { width: 900px; min-height: 30px; line-height: 30px; text-align: center; border-collapse: collapse;}
+table,table tr th, table tr td { border:2px solid white; }
+table { width: 900px; min-height: 50px; line-height: 50px; text-align: center; border-collapse: collapse;}
+table th {
+	background-color: #F5DEB3;
+	}
+table td {
+	background-color:#F5F5DC;
+	}
 </style>
 
-<table>
+<table align='center' style='width:50%'>
 	<tr>
 		<th>Number of Squirrels</th>
 		<th>Number of Juvenile Age Squirrels</th>
@@ -25,7 +47,7 @@ table { width: 900px; min-height: 30px; line-height: 30px; text-align: center; b
 	<td>{{ ground_plane_location }}</td>
 	<td>{{ running }}</td>
 	</tr>
-</table>
+	</center></table>
 </form>
 {% endblock %}
 </html>
