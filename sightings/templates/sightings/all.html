@@ -1,15 +1,32 @@
 <!doctype html>
 <html>
-	<head><title>2018 Central Park Squirrel Census</title></head>
+	<head>
+		<title>2018 Central Park Squirrel Census</title>
+		<style type="text/css">
+  	h1 {	color:black;
+		font-size:28pt;
+		font-family:fantasy,serif;
+		background-color:#CD5C5C;}
+	body {
+                font-size:16pt;
+                font-family:serif;
+                background-color:#F5F5DC;}
+	</style>
+	
+	</head>
     <body>
 	<div>
-	<p><a href="/sightings/add/">Create a new sighting</a></p>
+	<h1><a href="/sightings/add/"><center>Create a new sighting</center></a></h1>
+	<h1><a href="/sightings/stats/"><center>See fun stats of squirrels!</center></a></h1>
+	<h1><a href="/map/"><center>Go to the squirrel map</center></a></h1>
 	</div>
 	<div>
 	    <ul>
 	    {% for squirrel in squirrels %}
 	    <li>
+		   
 		    <a href='{{ squirrel.Unique_squirrel_id}}'>{{ squirrel.Unique_squirrel_id }}</a>
+		    
 	    </li>
 	    {% endfor %}
             </ul>
