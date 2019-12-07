@@ -40,16 +40,11 @@ def add(request):
         form = Form(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(f'/sightings/')
-    elif request.method == 'GET':
-        form = Form(request.GET)
-        if form.is_valid():
-            form.save()
-            return redirect(f'/sightings/')                                   
+        return redirect('/sightings/')
     else:
         form = Form()
-    context = {'form':form,}
-    return render(request,'sightings/squirrel_form.html',context)
+        context = {'form':form,}
+        return render(request,'sightings/squirrel_form.html',context)
 
 def delete(request,squirrel_id):
     Object = get_object_or_404(Squirrels,Unique_squirrel_id=squirrel_id)
