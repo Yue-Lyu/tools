@@ -2,24 +2,46 @@
 <html>
 	<head>
 		<title>2018 Central Park Squirrel Census</title>
+		<h1><center>Squirrel List</center></h1>
 		<style type="text/css">
-  	h1 {	color:black;
-		font-size:28pt;
-		font-family:fantasy,serif;
-		background-color:#CD5C5C;}
-	body {
+  	h1 {	color:#CD5C5C;
+		font-size:50pt;
+		font-family:serif;}
+	button {    color:white;
                 font-size:16pt;
-                font-family:serif;
+                font-family:fantasy;
+		background-color:#CD5C5C;
+		width: 500px;
+		}
+
+	body {  color: white;
+                font-size:16pt;
+                font-family:fantasy;
                 background-color:#F5F5DC;}
+	ul{columns: 4}
 	</style>
 	
 	</head>
     <body>
 	<div>
-	<h1><a href="/sightings/add/"><center>Create a new sighting</center></a></h1>
-	<h1><a href="/sightings/stats/"><center>See fun stats of squirrels!</center></a></h1>
-	<h1><a href="/map/"><center>Go to the squirrel map</center></a></h1>
+	<a href='/sightings/stats/' class=''>
+        <center>
+        <button type="button" class='button'>See fun stats of squirrels!</button>
+    	</center>
+  	</a>
+	<a href='/sightings/add/' class=''>
+        <center>
+        <button type="button" class='button'>Create a new sighting!</button>
+        </center>
+        </a>
+	<a href='/map/' class=''>
+        <center>
+        <button type="button" class='button'>Go to the squirrel map!</button>
+        </center>
+        </a>
+
 	</div>
+
 	<div>
 	    <ul>
 	    {% for squirrel in squirrels %}
